@@ -53,7 +53,15 @@ class TodoManager:
             "done": sum(1 for t in self.tasks if t["done"]),
             "pending": sum(1 for t in self.tasks if not t["done"]),
         }
+        
 
+    def clear_all(self) -> int:
+    """Remove all tasks and return how many were deleted."""
+    count = len(self.tasks)
+    self.tasks = []
+    self._next_id = 1
+    return count
+    
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
             if task["id"] == task_id:
