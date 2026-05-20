@@ -32,34 +32,34 @@ def get_changed_files():
 def analyze_with_gemini(diff: str) -> dict:
     """Send the diff to Gemini and get a quality analysis."""
 
-        prompt = f"""
-    You are a strict but fair software quality gate for a Python project.
-    Analyze the following code diff from a Pull Request and return ONLY a JSON object.
-    
-    Code diff:
-    {diff}
-    
-    Return ONLY this JSON (no markdown, no explanation):
-    {{
-      "decision": "APPROVED" or "REJECTED",
-      "score": <integer 0-100>,
-      "summary": "<one sentence overall assessment>",
-      "issues": ["<issue 1>", "<issue 2>"],
-      "positives": ["<positive 1>", "<positive 2>"],
-      "recommendation": "<one sentence recommendation>"
-    }}
-    
-    Rules for decision:
-    - APPROVED if score >= 70 and no critical bugs or security issues
-    - REJECTED if score < 70 or critical bugs/security issues found
-    
-    Evaluate based on:
-    - Correctness (does the code work as intended?)
-    - Test coverage (are new functions tested?)
-    - Code quality (readable, no duplication, good naming)
-    - Security (no obvious vulnerabilities)
-    - Edge cases (are error cases handled?)
-    """
+    prompt = f"""
+You are a strict but fair software quality gate for a Python project.
+Analyze the following code diff from a Pull Request and return ONLY a JSON object.
+
+Code diff:
+{diff}
+
+Return ONLY this JSON (no markdown, no explanation):
+{{
+  "decision": "APPROVED" or "REJECTED",
+  "score": <integer 0-100>,
+  "summary": "<one sentence overall assessment>",
+  "issues": ["<issue 1>", "<issue 2>"],
+  "positives": ["<positive 1>", "<positive 2>"],
+  "recommendation": "<one sentence recommendation>"
+}}
+
+Rules for decision:
+- APPROVED if score >= 70 and no critical bugs or security issues
+- REJECTED if score < 70 or critical bugs/security issues found
+
+Evaluate based on:
+- Correctness (does the code work as intended?)
+- Test coverage (are new functions tested?)
+- Code quality (readable, no duplication, good naming)
+- Security (no obvious vulnerabilities)
+- Edge cases (are error cases handled?)
+"""
 
     payload = json.dumps({
         "contents": [{"parts": [{"text": prompt}]}],
