@@ -56,11 +56,11 @@ class TodoManager:
         
 
     def clear_all(self) -> int:
-    """Remove all tasks and return how many were deleted."""
-    count = len(self.tasks)
-    self.tasks = []
-    self._next_id = 1
-    return count
+        """Remove all tasks and return how many were deleted."""
+        count = len(self.tasks)
+        self.tasks = []
+        self._next_id = 1
+        return count
     
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
