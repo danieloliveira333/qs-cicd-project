@@ -57,7 +57,7 @@ Evaluate based on:
 - Edge cases (are error cases handled?)"""
 
     payload = json.dumps({
-        "model": "deepseek/deepseek-v4-flash:free",
+        "model": "openai/gpt-oss-20b:free",
         "messages": [{"role": "user", "content": prompt}],
         "max_tokens": 1024,
         "temperature": 0.1
