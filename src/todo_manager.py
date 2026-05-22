@@ -53,7 +53,14 @@ class TodoManager:
             "done": sum(1 for t in self.tasks if t["done"]),
             "pending": sum(1 for t in self.tasks if not t["done"]),
         }
-
+    
+    def count_by_priority(self) -> dict:
+        """Return count of tasks grouped by priority."""
+        return {
+            "low": len([t for t in self.tasks if t["priority"] == "low"]),
+            "medium": len([t for t in self.tasks if t["priority"] == "medium"]),
+            "high": len([t for t in self.tasks if t["priority"] == "high"]),
+        }
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
             if task["id"] == task_id:
