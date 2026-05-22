@@ -44,7 +44,7 @@ jobs:
       - name: Run AI Quality Gate
         id: ai_gate
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           PR_DIFF: ${{ env.PR_DIFF }}
         run: python ai_quality_gate.py
         continue-on-error: true    # Continua para poder comentar no PR mesmo se rejeitar
