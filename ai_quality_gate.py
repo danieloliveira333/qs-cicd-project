@@ -57,7 +57,7 @@ Evaluate based on:
 - Edge cases (are error cases handled?)"""
 
     payload = json.dumps({
-        "model": "meta-llama/llama-3.3-70b-instruct:free",
+        "model": "deepseek/deepseek-r1:free",
         "messages": [{"role": "user", "content": prompt}],
         "max_tokens": 1024,
         "temperature": 0.1
