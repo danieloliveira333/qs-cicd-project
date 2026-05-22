@@ -61,6 +61,7 @@ class TodoManager:
             "medium": len([t for t in self.tasks if t["priority"] == "medium"]),
             "high": len([t for t in self.tasks if t["priority"] == "high"]),
         }
+        
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
             if task["id"] == task_id:
