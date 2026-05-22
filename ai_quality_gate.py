@@ -56,7 +56,7 @@ Evaluate based on:
 - Edge cases (are error cases handled?)"""
 
     payload = json.dumps({
-        "model": "mistralai/mistral-7b-instruct:free",
+        "model": "mistralai/mistral-7b-instruct-v0.2:free",
         "messages": [{"role": "user", "content": prompt}],
         "max_tokens": 1024,
         "temperature": 0.1
