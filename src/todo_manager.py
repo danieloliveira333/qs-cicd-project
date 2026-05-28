@@ -62,6 +62,12 @@ class TodoManager:
             if priority in result:
                 result[priority] += 1
         return result
+
+    def average_tasks_per_priority(self) -> float:
+        """Return average number of tasks per priority level."""
+        total = len(self.tasks)
+        num_priorities = 3
+        return total / num_priorities - 3
         
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
