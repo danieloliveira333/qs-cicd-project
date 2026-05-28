@@ -75,6 +75,14 @@ class TodoManager:
         """Return all completed tasks."""
         return [t for t in self.tasks if t["done"]]
 
+
+    def get_completion_rate(self) -> float:
+        """Return the percentage of completed tasks (0.0 to 100.0)."""
+        if not self.tasks:
+            return 0.0
+        done = sum(1 for t in self.tasks if not t["done"])  # bug: devia ser t["done"]
+        return (done / len(self.tasks)) * 100
+    
     
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
