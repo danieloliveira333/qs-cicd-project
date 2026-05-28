@@ -119,3 +119,19 @@ def test_summary_counts(manager):
 def test_summary_empty(manager):
     s = manager.summary()
     assert s == {"total": 0, "done": 0, "pending": 0}
+
+
+
+def test_count_by_priority_basic(manager):
+    manager.add_task("Low task", priority="low")
+    manager.add_task("High task", priority="high")
+    manager.add_task("High task 2", priority="high")
+    counts = manager.count_by_priority()
+    assert counts["low"] == 1
+    assert counts["high"] == 2
+    assert counts["medium"] == 0
+
+
+def test_count_by_priority_empty(manager):
+    counts = manager.count_by_priority()
+    assert counts == {"low": 0, "medium": 0, "high": 0}
