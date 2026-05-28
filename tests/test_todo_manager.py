@@ -162,3 +162,28 @@ def test_get_done_tasks_returns_completed(manager):
 def test_get_done_tasks_empty(manager):
     manager.add_task("Task A")
     assert manager.get_done_tasks() == []
+
+
+def test_search_tasks_finds_match(manager):
+    manager.add_task("Buy milk")
+    manager.add_task("Buy bread")
+    manager.add_task("Do laundry")
+    results = manager.search_tasks("buy")
+    assert len(results) == 2
+
+
+def test_search_tasks_case_insensitive(manager):
+    manager.add_task("Buy Milk")
+    results = manager.search_tasks("BUY")
+    assert len(results) == 1
+
+
+def test_search_tasks_no_match(manager):
+    manager.add_task("Buy milk")
+    results = manager.search_tasks("xyz")
+    assert results == []
+
+
+def test_search_tasks_empty_keyword_raises(manager):
+    with pytest.raises(ValueError):
+        manager.search_tasks("")
