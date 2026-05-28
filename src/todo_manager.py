@@ -69,7 +69,13 @@ class TodoManager:
         if not self.tasks:
             raise ValueError("No tasks available.")
         return min(self.tasks, key=lambda t: t["id"])
-        
+
+
+    def get_done_tasks(self) -> list:
+        """Return all completed tasks."""
+        return [t for t in self.tasks if t["done"]]
+
+    
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
             if task["id"] == task_id:
