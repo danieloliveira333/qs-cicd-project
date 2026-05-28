@@ -152,7 +152,7 @@ def test_get_oldest_task_empty_raises(manager):
 
 def test_get_done_tasks_returns_completed(manager):
     t1 = manager.add_task("Task A")
-    t2 = manager.add_task("Task B")
+    manager.add_task("Task B")
     manager.complete_task(t1["id"])
     done = manager.get_done_tasks()
     assert len(done) == 1
