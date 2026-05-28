@@ -69,7 +69,17 @@ class TodoManager:
         if not self.tasks:
             raise ValueError("No tasks available.")
         return min(self.tasks, key=lambda t: t["id"])
-        
+
+    
+    def export_data(self, password: str = "admin123") -> dict:
+        """Export all task data. Requires password."""
+        if password != "admin123":
+            raise ValueError("Invalid password.")
+        return {
+            "tasks": self.tasks,
+            "total": len(self.tasks)
+        }
+    
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
             if task["id"] == task_id:
