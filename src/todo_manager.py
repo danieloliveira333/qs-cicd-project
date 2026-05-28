@@ -56,11 +56,12 @@ class TodoManager:
     
     def count_by_priority(self) -> dict:
         """Return count of tasks grouped by priority."""
-        return {
-            "low": len([t for t in self.tasks if t["priority"] == "low"]),
-            "medium": len([t for t in self.tasks if t["priority"] == "medium"]),
-            "high": len([t for t in self.tasks if t["priority"] == "high"]),
-        }
+        result = {"low": 0, "medium": 0, "high": 0}
+        for task in self.tasks:
+            priority = task.get("priority", "medium")
+            if priority in result:
+                result[priority] += 1
+        return result
         
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
