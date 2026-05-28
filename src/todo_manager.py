@@ -81,13 +81,16 @@ class TodoManager:
         return self.tasks[-limit:] if self.tasks else []
 
 
+    def get_tasks_by_status(self, done: bool) -> list:
+        """Return tasks filtered by completion status."""
+        return [t for t in self.tasks if t["done"] == done]
+
     def search_tasks(self, keyword: str) -> list:
         """Search tasks by keyword in title (case-insensitive)."""
         if not keyword or not keyword.strip():
             raise ValueError("Search keyword cannot be empty.")
         keyword = keyword.strip().lower()
         return [t for t in self.tasks if keyword in t["title"].lower()]
-
     
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
