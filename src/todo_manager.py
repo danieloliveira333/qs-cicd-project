@@ -80,6 +80,11 @@ class TodoManager:
         """Return the most recently added tasks up to limit."""
         return self.tasks[-limit:] if self.tasks else []
 
+
+    def get_tasks_by_status(self, done: bool) -> list:
+        """Return tasks filtered by completion status."""
+        return [t for t in self.tasks if t["done"] == done]
+    
     
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
