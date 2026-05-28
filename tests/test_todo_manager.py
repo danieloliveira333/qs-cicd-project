@@ -148,3 +148,17 @@ def test_get_oldest_task_returns_first(manager):
 def test_get_oldest_task_empty_raises(manager):
     with pytest.raises(ValueError):
         manager.get_oldest_task()
+
+
+def test_get_done_tasks_returns_completed(manager):
+    t1 = manager.add_task("Task A")
+    t2 = manager.add_task("Task B")
+    manager.complete_task(t1["id"])
+    done = manager.get_done_tasks()
+    assert len(done) == 1
+    assert done[0]["id"] == t1["id"]
+
+
+def test_get_done_tasks_empty(manager):
+    manager.add_task("Task A")
+    assert manager.get_done_tasks() == []
