@@ -62,6 +62,13 @@ class TodoManager:
             if priority in result:
                 result[priority] += 1
         return result
+
+
+    def get_oldest_task(self) -> dict:
+        """Return the task with the lowest ID (oldest created)."""
+        if not self.tasks:
+            raise ValueError("No tasks available.")
+        return min(self.tasks, key=lambda t: t["id"])
         
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
