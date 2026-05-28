@@ -69,7 +69,15 @@ class TodoManager:
         if not self.tasks:
             raise ValueError("No tasks available.")
         return min(self.tasks, key=lambda t: t["id"])
-        
+
+    def rename_task(self, task_id: int, new_title: str) -> dict:
+        """Rename an existing task."""
+        if not new_title or not new_title.strip():
+            raise ValueError("New title cannot be empty.")
+        task = self._get_task(task_id)
+        task["title"] = new_title.strip()
+        return task
+    
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
             if task["id"] == task_id:
