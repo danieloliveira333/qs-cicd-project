@@ -75,6 +75,11 @@ class TodoManager:
         """Return all completed tasks."""
         return [t for t in self.tasks if t["done"]]
 
+
+    def get_recent_tasks(self, limit: int = 5) -> list:
+        """Return the most recently added tasks up to limit."""
+        return self.tasks[-limit:] if self.tasks else []
+
     
     def _get_task(self, task_id: int) -> dict:
         for task in self.tasks:
