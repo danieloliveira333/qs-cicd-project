@@ -135,3 +135,16 @@ def test_count_by_priority_basic(manager):
 def test_count_by_priority_empty(manager):
     counts = manager.count_by_priority()
     assert counts == {"low": 0, "medium": 0, "high": 0}
+
+
+
+def test_get_oldest_task_returns_first(manager):
+    manager.add_task("First task")
+    manager.add_task("Second task")
+    oldest = manager.get_oldest_task()
+    assert oldest["title"] == "First task"
+
+
+def test_get_oldest_task_empty_raises(manager):
+    with pytest.raises(ValueError):
+        manager.get_oldest_task()
